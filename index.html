@@ -318,6 +318,8 @@
             object-fit: cover;
             transition: transform 0.5s ease;
             cursor: pointer;
+            display: block; /* Garante renderização */
+            opacity: 1 !important; /* Previne falhas de opacidade */
         }
         
         .moto-card:hover img {
@@ -473,12 +475,12 @@
             .filter-container { order: 3; }
             .motos-grid { order: 4; }
             
-            /* CORREÇÃO AQUI: Mudando para 1 coluna no mobile para não esmagar o texto */
+            /* CORREÇÃO DO TEXTO SOBREPOSTO: Mudando para 1 coluna no mobile */
             .excelencia { 
                 order: 5; 
                 grid-template-columns: 1fr; 
-                padding: 30px 5%; 
-                gap: 20px; 
+                padding: 30px 8%; 
+                gap: 30px; 
             }
             
             .como-funciona { order: 6; }
@@ -1279,15 +1281,13 @@
         }
 
         cards.forEach(card => {
-            card.style.opacity = '0';
-            setTimeout(() => {
-                if (category === 'todos' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                    setTimeout(() => { card.style.opacity = '1'; }, 50);
-                } else {
-                    card.style.display = 'none';
-                }
-            }, 300);
+            // Removida animação complexa que causava falhas no carregamento mobile
+            if (category === 'todos' || card.getAttribute('data-category') === category) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+            } else {
+                card.style.display = 'none';
+            }
         });
     }
 </script>
