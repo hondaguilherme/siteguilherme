@@ -768,7 +768,7 @@
         </div>
     </div>
 
-    <div class="moto-card" data-category="scooter">
+    <div class="moto-card" data-category="urbana">
         <div class="img-container">
             <span class="badge-destaque">Queridinha</span>
             <img src="BIZ125.jpeg" alt="BIZ 125 ES">
@@ -810,7 +810,7 @@
         </div>
     </div>
 
-    <div class="moto-card" data-category="scooter">
+    <div class="moto-card" data-category="urbana">
         <div class="img-container"><img src="BIZ125EX.jpeg" alt="BIZ 125 EX"></div>
         <div class="moto-info">
             <strong>BIZ 125 EX</strong>
@@ -1230,7 +1230,7 @@
         <div class="passo-item">
             <div class="passo-icon"><i class="fas fa-comments"></i></div>
             <h4>1. Consultoria Digital</h4>
-            <p>Analisamos seu perfil e orçamento via WhatsApp para escolher o melhor grupo e prazo.</p>
+            <p>Analisamos seu perfil e orçamento via WhatsApp para escolher the melhor grupo e prazo.</p>
         </div>
         <div class="passo-item">
             <div class="passo-icon"><i class="fas fa-file-signature"></i></div>
@@ -1273,7 +1273,7 @@
             detalhes.style.display = "block";
             btn.innerText = "Ocultar Detalhes";
         }
-        // Força o navegador a recalcular o layout para evitar sobreposição
+        // Força o navegador a recalcular o layout para evitar sobreposição (Fix iPhone 8)
         window.dispatchEvent(new Event('resize'));
     }
 
@@ -1287,10 +1287,9 @@
         }
 
         cards.forEach(card => {
-            // Removido setTimeout complexo que causava falhas no Safari iPhone 8
             if (category === 'todos' || card.getAttribute('data-category') === category) {
                 card.style.display = 'flex';
-                // Truque para obrigar o Safari a redesenhar a imagem
+                // Força o Safari a redesenhar a imagem para não sumir
                 const img = card.querySelector('img');
                 if (img) {
                     img.style.display = 'none';
