@@ -288,11 +288,15 @@
             border: 1px solid #eee;
             border-radius: 4px;
             overflow: hidden;
-            transition: transform 0.3s, opacity 0.4s ease;
             display: flex;
             flex-direction: column;
             width: 280px;
             min-height: 420px;
+            opacity: 0; /* Começa invisível para o fade-in */
+            transition: transform 0.3s, opacity 0.6s ease; /* Efeito suave de aparecimento */
+        }
+
+        .moto-card.visible {
             opacity: 1;
         }
 
@@ -507,9 +511,7 @@
         }
     </style>
 </head>
-<body>
-
-<header>
+<body onload="filterMotos('todos')"> <header>
     <div class="logo-area">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda Logo">
         <h1>Guilherme Honda</h1>
@@ -1230,7 +1232,7 @@
         <div class="passo-item">
             <div class="passo-icon"><i class="fas fa-comments"></i></div>
             <h4>1. Consultoria Digital</h4>
-            <p>Analisamos seu perfil e orçamento via WhatsApp para escolher the melhor grupo e prazo.</p>
+            <p>Analisamos seu perfil e orçamento via WhatsApp para escolher o melhor grupo e prazo.</p>
         </div>
         <div class="passo-item">
             <div class="passo-icon"><i class="fas fa-file-signature"></i></div>
@@ -1287,13 +1289,22 @@
         }
 
         cards.forEach(card => {
+            // Remove a visibilidade antes de processar para resetar o efeito suave
+            card.classList.remove('visible');
+            
             if (category === 'todos' || card.getAttribute('data-category') === category) {
                 card.style.display = 'flex';
-                // Força o Safari a redesenhar a imagem para não sumir
+                
+                // Truque para obrigar o Safari a redesenhar a imagem
                 const img = card.querySelector('img');
                 if (img) {
                     img.style.display = 'none';
-                    setTimeout(() => { img.style.display = 'block'; }, 10);
+                    setTimeout(() => { 
+                        img.style.display = 'block'; 
+                        card.classList.add('visible'); // Adiciona a classe para o fade-in suave
+                    }, 50);
+                } else {
+                    setTimeout(() => card.classList.add('visible'), 50);
                 }
             } else {
                 card.style.display = 'none';
