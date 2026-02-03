@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guilherme Honda | Consórcio e Vendas Honda em Açailândia e Região.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --honda-red: #cc0000;
+            --whatsapp-green: #25d366;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+        }
+
+        /* Ajustes para evitar rolagem lateral e suavizar clique no menu */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-area img { height: 30px; }
+
+        .logo-area h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        nav { display: flex; align-items: center; }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--honda-red); }
+
+        .insta-header {
+            color: #E1306C;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        
+        .insta-header:hover { opacity: 0.7; }
+
+        /* Hero com Vídeo */
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 100px 10%;
+            min-height: 500px;
+            width: 100%;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-content { 
+            text-align: left; 
+            max-width: 600px; 
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h2.main-cta {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h2.sub-quote {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #eee;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 0.9rem;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        /* Seção Como Funciona */
+        .como-funciona {
+            padding: 60px 5%;
+            background: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .passos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .passo-item {
+            padding: 20px;
+        }
+
+        .passo-icon {
+            font-size: 2.5rem;
+            color: var(--honda-red);
+            margin-bottom: 15px;
+        }
+
+        .passo-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        /* Botão Flutuante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Filtros */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            padding: 0 5%;
+            width: 100%;
+        }
+
+        .filter-btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--honda-red);
+            color: white;
+            border-color: var(--honda-red);
+        }
+
+        /* Seção Excelência */
+        .excelencia {
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .excelencia h3 { font-size: 1.2rem; color: var(--honda-red); }
+        .excelencia p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* Grid de Motos */
+        .section-title {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 50px 0 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+        }
+
+        .motos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 5%;
+            width: 100%;
+        }
+
+        .moto-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s, opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            opacity: 1;
+        }
+
+        .moto-card:hover { transform: translateY(-5px); }
+
+        .img-container {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .badge-destaque {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: gold;
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+
+        .moto-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+        
+        .moto-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .moto-info {
+            padding: 15px;
+            font-size: 0.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .moto-info strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Detalhes */
+        .detalhes-plano {
+            display: none;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .planos-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .plano-box {
+            background: #fdfdfd;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .plano-titulo {
+            font-weight: bold;
+            color: var(--honda-red);
+            font-size: 0.75rem;
+            text-align: center;
+            margin-bottom: 8px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lista-parcelas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lista-parcelas li {
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            border-bottom: 1px solid #fafafa;
+        }
+
+        .btn-planos {
+            display: block;
+            text-align: center;
+            background: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            padding: 8px;
+            margin-top: auto;
+            font-size: 0.75rem;
+            border-radius: 2px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--whatsapp-green);
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 2px;
+            transition: 0.3s;
+            border: none;
+            width: 100%;
+        }
+
+        /* Sonhos Realizados */
+        .sonhos-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 5%;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sonho-card {
+            min-width: 200px;
+            height: 250px;
+            background: #eee;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        footer { padding: 60px 0; text-align: center; border-top: 1px solid #eee; width: 100%; }
+        .social-icon { font-size: 2rem; color: #E1306C; text-decoration: none; transition: 0.3s; }
+        .copy { margin-top: 20px; font-size: 0.7rem; color: #999; }
+
+        /* --- AJUSTES PARA CELULAR --- */
+        @media (max-width: 600px) {
+            header { order: 0; padding: 15px 3%; }
+            
+            .hero { 
+                order: 1; 
+                padding: 60px 5%; 
+                gap: 20px; 
+                text-align: center; 
+                flex-direction: column;
+                min-height: 400px;
+            }
+            .hero-content {
+                text-align: center;
+                max-width: 100%;
+            }
+            .hero h2.main-cta, .hero h2.sub-quote, .hero p {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #motos-titulo { order: 2; }
+            .filter-container { order: 3; }
+            .motos-grid { order: 4; }
+            
+            #excelencia { order: 5; grid-template-columns: 1fr; padding: 30px 5%; gap: 20px; }
+            
+            .como-funciona { order: 6; }
+            #sonhos { order: 7; } 
+            .sonhos-grid { order: 8; }
+            footer { order: 9; }
+
+            .logo-area h1 { font-size: 0.85rem; }
+            nav a { font-size: 0.7rem; margin-left: 8px; }
+            .hero h2.main-cta { font-size: 1.4rem; }
+            .hero h2.sub-quote { font-size: 1rem; }
+            .profile-img { width: 120px; height: 120px; }
+            .motos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 10px; }
+            .img-container { height: 130px; }
+            .moto-info strong { font-size: 0.8rem; min-height: 2.4em; display: flex; align-items: center; justify-content: center; }
+            .btn-planos { font-size: 0.65rem; padding: 8px 5px; }
+            .btn-whatsapp { font-size: 0.75rem; padding: 10px 5px; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 15px; right: 15px; }
+            .planos-container { grid-template-columns: 1fr; } 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Honda Logo">
+        <h1>Guilherme Honda</h1>
+    </div>
+    <nav>
+        <a href="#excelencia">Consultoria</a>
+        <a href="#motos-titulo">Modelos</a>
+        <a href="#sonhos">Realizações</a>
+        <a href="https://www.instagram.com/guilherme_hondaa" target="_blank" class="insta-header">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videobanner.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
+    <div class="hero-overlay"></div>
+
+    <img src="perfil.jpg" alt="Guilherme Honda" class="profile-img">
+    <div class="hero-content">
+        <h2 class="main-cta">Planeje sua Honda com quem entende</h2>
+    </div>
+</section>
+
+<a href="https://wa.me/5599991851241?text=Olá Guilherme, gostaria de saber mais sobre os planos de consórcio!" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<section class="excelencia" id="excelencia">
+    <div>
+        <h3>Excelência Honda: Consultoria Estratégica</h3>
+        <p>Fechar um negócio com quem entende do assunto faz toda a diferença. Minha consultoria foca em encontrar o plano que respeita seu orçamento, garantindo a menor taxa e a maior probabilidade de contemplação.</p>
+    </div>
+    <div>
+        <h3>Por que fechar comigo?</h3>
+        <p>Ofereço atendimento personalizado, transparência total nos prazos e um acompanhamento pós-venda diferenciado. Na Honda Motocas, meu compromisso é com a sua satisfação e agilidade no processo.</p>
+    </div>
+</section>
+
+<h2 class="section-title" id="motos-titulo">Catálogo de Oportunidades</h2>
+
+<div class="filter-container">
+    <button class="filter-btn active" onclick="filterMotos('todos')">Todas</button>
+    <button class="filter-btn" onclick="filterMotos('urbana')">Urbanas</button>
+    <button class="filter-btn" onclick="filterMotos('offroad')">Off-Road</button>
+    <button class="filter-btn" onclick="filterMotos('scooter')">Scooters</button>
+    <button class="filter-btn" onclick="filterMotos('alta')">Alta Cilindrada</button>
+</div>
+
+<div class="motos-grid" id="motos">
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="POP110I.jpeg" alt="POP 110 i"></div>
+        <div class="moto-info">
+            <strong>POP 110 i</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 194,03</span></li>
+                            <li><span>60x</span> <span>R$ 251,32</span></li>
+                            <li><span>48x</span> <span>R$ 309,55</span></li>
+                            <li><span>36x</span> <span>R$ 407,82</span></li>
+                            <li><span>24x</span> <span>R$ 599,83</span></li>
+                            <li><span>18x</span> <span>R$ 795,14</span></li>
+                            <li><span>12x</span> <span>R$ 1.185,78</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na POP 110 i." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="POP1102.jpeg" alt="POP 110+"></div>
+        <div class="moto-info">
+            <strong>POP 110+</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 213,44</span></li>
+                            <li><span>60x</span> <span>R$ 276,44</span></li>
+                            <li><span>48x</span> <span>R$ 340,51</span></li>
+                            <li><span>36x</span> <span>R$ 448,60</span></li>
+                            <li><span>24x</span> <span>R$ 659,81</span></li>
+                            <li><span>18x</span> <span>R$ 874,65</span></li>
+                            <li><span>12x</span> <span>R$ 1.304,35</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na POP 110+." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container">
+            <span class="badge-destaque">Líder de Vendas</span>
+            <img src="160FAN.jpeg" alt="FAN 160">
+        </div>
+        <div class="moto-info">
+            <strong>FAN 160</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 345,52</span></li>
+                            <li><span>60x</span> <span>R$ 447,53</span></li>
+                            <li><span>48x</span> <span>R$ 551,23</span></li>
+                            <li><span>36x</span> <span>R$ 726,22</span></li>
+                            <li><span>24x</span> <span>R$ 1.068,15</span></li>
+                            <li><span>18x</span> <span>R$ 1.415,94</span></li>
+                            <li><span>12x</span> <span>R$ 2.111,57</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 376,62</span></li>
+                            <li><span>60x</span> <span>R$ 487,80</span></li>
+                            <li><span>48x</span> <span>R$ 600,84</span></li>
+                            <li><span>36x</span> <span>R$ 791,58</span></li>
+                            <li><span>24x</span> <span>R$ 1.164,28</span></li>
+                            <li><span>18x</span> <span>R$ 1.543,38</span></li>
+                            <li><span>12x</span> <span>R$ 2.301,61</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de simular a FAN 160." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="TITAN160.jpeg" alt="TITAN 160"></div>
+        <div class="moto-info">
+            <strong>TITAN 160</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 370,70</span></li>
+                            <li><span>60x</span> <span>R$ 480,13</span></li>
+                            <li><span>48x</span> <span>R$ 591,39</span></li>
+                            <li><span>36x</span> <span>R$ 779,12</span></li>
+                            <li><span>24x</span> <span>R$ 1.145,96</span></li>
+                            <li><span>18x</span> <span>R$ 1.519,09</span></li>
+                            <li><span>12x</span> <span>R$ 2.265,39</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 400,35</span></li>
+                            <li><span>60x</span> <span>R$ 518,54</span></li>
+                            <li><span>48x</span> <span>R$ 638,70</span></li>
+                            <li><span>36x</span> <span>R$ 841,45</span></li>
+                            <li><span>24x</span> <span>R$ 1.237,64</span></li>
+                            <li><span>18x</span> <span>R$ 1.640,62</span></li>
+                            <li><span>12x</span> <span>R$ 2.446,63</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na TITAN 160." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="BROS160.jpeg" alt="BROS 160"></div>
+        <div class="moto-info">
+            <strong>BROS 160</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 400,04</span></li>
+                            <li><span>60x</span> <span>R$ 518,14</span></li>
+                            <li><span>48x</span> <span>R$ 638,20</span></li>
+                            <li><span>36x</span> <span>R$ 840,79</span></li>
+                            <li><span>24x</span> <span>R$ 1.236,67</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 432,04</span></li>
+                            <li><span>60x</span> <span>R$ 559,59</span></li>
+                            <li><span>48x</span> <span>R$ 689,26</span></li>
+                            <li><span>36x</span> <span>R$ 908,06</span></li>
+                            <li><span>24x</span> <span>R$ 1.335,61</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de saber sobre a BROS 160." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="BROS160ABS.jpeg" alt="BROS 160 ABS"></div>
+        <div class="moto-info">
+            <strong>BROS 160 ABS</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 417,30</span></li>
+                            <li><span>60x</span> <span>R$ 540,49</span></li>
+                            <li><span>48x</span> <span>R$ 665,73</span></li>
+                            <li><span>36x</span> <span>R$ 877,06</span></li>
+                            <li><span>24x</span> <span>R$ 1.290,02</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 450,68</span></li>
+                            <li><span>60x</span> <span>R$ 583,73</span></li>
+                            <li><span>48x</span> <span>R$ 718,99</span></li>
+                            <li><span>36x</span> <span>R$ 947,23</span></li>
+                            <li><span>24x</span> <span>R$ 1.393,22</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Quero saber os planos da BROS ABS." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="biz">
+        <div class="img-container">
+            <span class="badge-destaque">Queridinha</span>
+            <img src="BIZ125.jpeg" alt="BIZ 125 ES">
+        </div>
+        <div class="moto-info">
+            <strong>BIZ 125 ES</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 247,12</span></li>
+                            <li><span>60x</span> <span>R$ 320,07</span></li>
+                            <li><span>48x</span> <span>R$ 394,24</span></li>
+                            <li><span>36x</span> <span>R$ 519,39</span></li>
+                            <li><span>24x</span> <span>R$ 763,94</span></li>
+                            <li><span>18x</span> <span>R$ 1.012,68</span></li>
+                            <li><span>12x</span> <span>R$ 1.510,19</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 269,32</span></li>
+                            <li><span>60x</span> <span>R$ 348,88</span></li>
+                            <li><span>48x</span> <span>R$ 429,72</span></li>
+                            <li><span>36x</span> <span>R$ 566,13</span></li>
+                            <li><span>24x</span> <span>R$ 832,69</span></li>
+                            <li><span>18x</span> <span>R$ 1.103,83</span></li>
+                            <li><span>12x</span> <span>R$ 1.646,11</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de simular a BIZ 125 ES." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="biz">
+        <div class="img-container"><img src="BIZ125EX.jpeg" alt="BIZ 125 EX"></div>
+        <div class="moto-info">
+            <strong>BIZ 125 EX</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 305,84</span></li>
+                            <li><span>60x</span> <span>R$ 396,13</span></li>
+                            <li><span>48x</span> <span>R$ 487,92</span></li>
+                            <li><span>36x</span> <span>R$ 642,81</span></li>
+                            <li><span>24x</span> <span>R$ 945,47</span></li>
+                            <li><span>18x</span> <span>R$ 1.253,32</span></li>
+                            <li><span>12x</span> <span>R$ 1.869,05</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 333,37</span></li>
+                            <li><span>60x</span> <span>R$ 431,78</span></li>
+                            <li><span>48x</span> <span>R$ 531,84</span></li>
+                            <li><span>36x</span> <span>R$ 700,66</span></li>
+                            <li><span>24x</span> <span>R$ 1.030,56</span></li>
+                            <li><span>18x</span> <span>R$ 1.366,12</span></li>
+                            <li><span>12x</span> <span>R$ 2.037,26</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na BIZ 125 EX." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="CGSTART.jpeg" alt="CG START 160"></div>
+        <div class="moto-info">
+            <strong>CG START 160</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 316,61</span></li>
+                            <li><span>60x</span> <span>R$ 410,08</span></li>
+                            <li><span>48x</span> <span>R$ 505,11</span></li>
+                            <li><span>36x</span> <span>R$ 665,45</span></li>
+                            <li><span>24x</span> <span>R$ 978,77</span></li>
+                            <li><span>18x</span> <span>R$ 1.297,47</span></li>
+                            <li><span>12x</span> <span>R$ 1.934,89</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 345,11</span></li>
+                            <li><span>60x</span> <span>R$ 446,99</span></li>
+                            <li><span>48x</span> <span>R$ 550,57</span></li>
+                            <li><span>36x</span> <span>R$ 725,34</span></li>
+                            <li><span>24x</span> <span>R$ 1.066,86</span></li>
+                            <li><span>18x</span> <span>R$ 1.414,24</span></li>
+                            <li><span>12x</span> <span>R$ 2.109,03</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Quero saber os planos da CG START." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="XRE190.jpeg" alt="XRE 190"></div>
+        <div class="moto-info">
+            <strong>XRE 190</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 433,22</span></li>
+                            <li><span>60x</span> <span>R$ 561,12</span></li>
+                            <li><span>48x</span> <span>R$ 691,14</span></li>
+                            <li><span>36x</span> <span>R$ 910,54</span></li>
+                            <li><span>24x</span> <span>R$ 1.339,26</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 461,38</span></li>
+                            <li><span>60x</span> <span>R$ 597,59</span></li>
+                            <li><span>48x</span> <span>R$ 736,07</span></li>
+                            <li><span>36x</span> <span>R$ 969,72</span></li>
+                            <li><span>24x</span> <span>R$ 1.426,31</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de simular a XRE 190." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="XRE300ABS.jpeg" alt="XRE 300 ABS"></div>
+        <div class="moto-info">
+            <strong>XRE 300 ABS SA</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 567,52</span></li>
+                            <li><span>60x</span> <span>R$ 735,06</span></li>
+                            <li><span>48x</span> <span>R$ 905,40</span></li>
+                            <li><span>36x</span> <span>R$ 1.192,81</span></li>
+                            <li><span>24x</span> <span>R$ 1.754,43</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 604,41</span></li>
+                            <li><span>60x</span> <span>R$ 782,84</span></li>
+                            <li><span>48x</span> <span>R$ 964,25</span></li>
+                            <li><span>36x</span> <span>R$ 1.270,34</span></li>
+                            <li><span>24x</span> <span>R$ 1.868,47</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Quero saber sobre a XRE 300 ABS." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container">
+            <span class="badge-destaque">Lançamento</span>
+            <img src="XRE300SAHARA.jpeg" alt="SAHARA ADV">
+        </div>
+        <div class="moto-info">
+            <strong>SAHARA 300 ADV</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 586,56</span></li>
+                            <li><span>60x</span> <span>R$ 759,56</span></li>
+                            <li><span>48x</span> <span>R$ 935,77</span></li>
+                            <li><span>36x</span> <span>R$ 1.232,82</span></li>
+                            <li><span>24x</span> <span>R$ 1.813,28</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 624,68</span></li>
+                            <li><span>60x</span> <span>R$ 809,10</span></li>
+                            <li><span>48x</span> <span>R$ 996,59</span></li>
+                            <li><span>36x</span> <span>R$ 1.312,95</span></li>
+                            <li><span>24x</span> <span>R$ 1.931,14</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Quero simular a SAHARA 300 ADV." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="XR300TORNADO.jpeg" alt="TORNADO"></div>
+        <div class="moto-info">
+            <strong>XR 300 L TORNADO</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 552,88</span></li>
+                            <li><span>60x</span> <span>R$ 716,09</span></li>
+                            <li><span>48x</span> <span>R$ 882,03</span></li>
+                            <li><span>36x</span> <span>R$ 1.162,02</span></li>
+                            <li><span>24x</span> <span>R$ 1.709,15</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 588,81</span></li>
+                            <li><span>60x</span> <span>R$ 762,64</span></li>
+                            <li><span>48x</span> <span>R$ 939,36</span></li>
+                            <li><span>36x</span> <span>R$ 1.237,55</span></li>
+                            <li><span>24x</span> <span>R$ 1.820,24</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na nova TORNADO 300." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="CB300CBS.jpeg" alt="CB 300 CBS"></div>
+        <div class="moto-info">
+            <strong>CB 300 CBS</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 452,61</span></li>
+                            <li><span>60x</span> <span>R$ 586,22</span></li>
+                            <li><span>48x</span> <span>R$ 722,07</span></li>
+                            <li><span>36x</span> <span>R$ 951,28</span></li>
+                            <li><span>24x</span> <span>R$ 1.399,19</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 482,03</span></li>
+                            <li><span>60x</span> <span>R$ 624,33</span></li>
+                            <li><span>48x</span> <span>R$ 769,00</span></li>
+                            <li><span>36x</span> <span>R$ 1.013,12</span></li>
+                            <li><span>24x</span> <span>R$ 1.490,13</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de saber sobre a CB 300 CBS." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="urbana">
+        <div class="img-container"><img src="CB300ABS.jpeg" alt="CB 300 ABS"></div>
+        <div class="moto-info">
+            <strong>CB 300 ABS</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 470,23</span></li>
+                            <li><span>60x</span> <span>R$ 609,05</span></li>
+                            <li><span>48x</span> <span>R$ 750,18</span></li>
+                            <li><span>36x</span> <span>R$ 988,32</span></li>
+                            <li><span>24x</span> <span>R$ 1.453,66</span></li>
+                        </ul>
+                    </div>
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda+</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 500,88</span></li>
+                            <li><span>60x</span> <span>R$ 648,64</span></li>
+                            <li><span>48x</span> <span>R$ 798,95</span></li>
+                            <li><span>36x</span> <span>R$ 1.052,56</span></li>
+                            <li><span>24x</span> <span>R$ 1.548,15</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Quero simular a CB 300 ABS." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="alta">
+        <div class="img-container">
+            <span class="badge-destaque">Performance</span>
+            <img src="CB500HORNET.jpeg" alt="CB 500 HORNET">
+        </div>
+        <div class="moto-info">
+            <strong>CB 500 HORNET</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Advance</span>
+                        <ul class="lista-parcelas">
+                            <li><span>72x</span> <span>R$ 780,03</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na CB 500 HORNET." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="scooter">
+        <div class="img-container"><img src="ELITE125.jpeg" alt="ELITE 125"></div>
+        <div class="moto-info">
+            <strong>ELITE 125</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 256,31</span></li>
+                            <li><span>60x</span> <span>R$ 331,98</span></li>
+                            <li><span>48x</span> <span>R$ 408,91</span></li>
+                            <li><span>36x</span> <span>R$ 538,71</span></li>
+                            <li><span>24x</span> <span>R$ 792,36</span></li>
+                            <li><span>18x</span> <span>R$ 1.050,36</span></li>
+                            <li><span>12x</span> <span>R$ 1.566,38</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de simular a ELITE 125." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="scooter">
+        <div class="img-container"><img src="PCX.jpeg" alt="PCX ABS"></div>
+        <div class="moto-info">
+            <strong>PCX ABS</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 375,30</span></li>
+                            <li><span>60x</span> <span>R$ 486,09</span></li>
+                            <li><span>48x</span> <span>R$ 598,74</span></li>
+                            <li><span>36x</span> <span>R$ 788,80</span></li>
+                            <li><span>24x</span> <span>R$ 1.160,20</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na PCX ABS." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="offroad">
+        <div class="img-container"><img src="CRF300R.jpeg" alt="CRF 300F"></div>
+        <div class="moto-info">
+            <strong>CRF 300F</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Vou de Honda</span>
+                        <ul class="lista-parcelas">
+                            <li><span>80x</span> <span>R$ 432,61</span></li>
+                            <li><span>60x</span> <span>R$ 560,32</span></li>
+                            <li><span>48x</span> <span>R$ 690,16</span></li>
+                            <li><span>36x</span> <span>R$ 909,25</span></li>
+                            <li><span>24x</span> <span>R$ 1.337,36</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Gostaria de saber sobre a CRF 300F." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+
+    <div class="moto-card" data-category="alta">
+        <div class="img-container"><img src="NX500.jpeg" alt="NX 500"></div>
+        <div class="moto-info">
+            <strong>NX 500</strong>
+            <div class="detalhes-plano">
+                <div class="planos-container">
+                    <div class="plano-box">
+                        <span class="plano-titulo">Advance</span>
+                        <ul class="lista-parcelas">
+                            <li><span>72x</span> <span>R$ 829,43</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-planos" onclick="toggleDetalhes(this)">Ver Detalhes do Plano</button>
+            <a href="https://wa.me/5599991851241?text=Olá! Tenho interesse na NX 500." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Fechar Negócio
+            </a>
+        </div>
+    </div>
+</div>
+
+<section class="como-funciona">
+    <h2 class="section-title">Como funciona?</h2>
+    <div class="passos-grid">
+        <div class="passo-item">
+            <div class="passo-icon"><i class="fas fa-comments"></i></div>
+            <h4>1. Consultoria Digital</h4>
+            <p>Analisamos seu perfil e orçamento via WhatsApp para escolher o melhor grupo e prazo.</p>
+        </div>
+        <div class="passo-item">
+            <div class="passo-icon"><i class="fas fa-file-signature"></i></div>
+            <h4>2. Adesão Estratégica</h4>
+            <p>Você entra em um grupo com altas taxas de contemplação e define sua estratégia de lances.</p>
+        </div>
+        <div class="passo-item">
+            <div class="passo-icon"><i class="fas fa-motorcycle"></i></div>
+            <h4>3. Conquista da Moto</h4>
+            <p>Após a contemplação, cuidamos de toda a burocracia para você retirar sua Honda 0km.</p>
+        </div>
+    </div>
+</section>
+
+<h2 class="section-title" id="sonhos">Alguns Sonhos já Realizados</h2>
+<div class="sonhos-grid">
+    <img class="sonho-card" src="Cliente1.jpg" alt="Cliente 1">
+    <img class="sonho-card" src="Cliente2.jpg" alt="Cliente 2">
+    <img class="sonho-card" src="Cliente3.jpg" alt="Cliente 3">
+    <img class="sonho-card" src="Cliente4.jpg" alt="Cliente 4">
+    <img class="sonho-card" src="Cliente5.jpg" alt="Cliente 5">
+    <img class="sonho-card" src="Cliente6.jpg" alt="Cliente 6">
+    <img class="sonho-card" src="Cliente7.jpg" alt="Cliente 7">
+</div>
+
+<footer>
+    <a href="https://www.instagram.com/guilherme_hondaa" target="_blank" class="social-icon">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <p class="copy">&copy; 2026 Guilherme Honda - Consultor de Vendas Honda Motocas. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    function toggleDetalhes(btn) {
+        const detalhes = btn.previousElementSibling;
+        if (detalhes.style.display === "block") {
+            detalhes.style.display = "none";
+            btn.innerText = "Ver Detalhes do Plano";
+        } else {
+            detalhes.style.display = "block";
+            btn.innerText = "Ocultar Detalhes";
+        }
+    }
+
+    function filterMotos(category) {
+        const cards = document.querySelectorAll('.moto-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            setTimeout(() => {
+                if (category === 'todos' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => { card.style.opacity = '1'; }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            }, 300);
+        });
+    }
+</script>
+
+</body>
+</html>
