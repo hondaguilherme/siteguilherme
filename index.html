@@ -473,7 +473,13 @@
             .filter-container { order: 3; }
             .motos-grid { order: 4; }
             
-            #excelencia { order: 5; grid-template-columns: 1fr; padding: 30px 5%; gap: 20px; }
+            /* CORREÇÃO AQUI: Mudando para 1 coluna no mobile para não esmagar o texto */
+            .excelencia { 
+                order: 5; 
+                grid-template-columns: 1fr; 
+                padding: 30px 5%; 
+                gap: 20px; 
+            }
             
             .como-funciona { order: 6; }
             #sonhos { order: 7; } 
