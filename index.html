@@ -17,6 +17,7 @@
         /* Ajustes para evitar rolagem lateral e suavizar clique no menu */
         * {
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -249,11 +250,15 @@
         /* Seção Excelência */
         .excelencia {
             padding: 60px 5%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 40px;
-            align-items: center;
             width: 100%;
+        }
+
+        .excelencia > div {
+            flex: 1;
+            min-width: 300px;
         }
 
         .excelencia h3 { font-size: 1.2rem; color: var(--honda-red); }
@@ -270,8 +275,9 @@
         }
 
         .motos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 25px;
             padding: 0 5%;
             width: 100%;
@@ -285,7 +291,8 @@
             transition: transform 0.3s, opacity 0.4s ease;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            width: 280px;
+            min-height: 420px;
             opacity: 1;
         }
 
@@ -297,6 +304,7 @@
             overflow: hidden;
             background: #f0f0f0;
             position: relative;
+            flex-shrink: 0;
         }
 
         .badge-destaque {
@@ -318,8 +326,7 @@
             object-fit: cover;
             transition: transform 0.5s ease;
             cursor: pointer;
-            display: block; /* Garante renderização */
-            opacity: 1 !important; /* Previne falhas de opacidade */
+            display: block;
         }
         
         .moto-card:hover img {
@@ -339,6 +346,7 @@
             font-size: 1rem;
             margin-bottom: 10px;
             text-align: center;
+            min-height: 1.2em;
         }
 
         /* Detalhes */
@@ -347,25 +355,22 @@
             margin-top: 15px;
             padding-top: 10px;
             border-top: 1px dashed #ddd;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+            width: 100%;
         }
 
         .planos-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+            width: 100%;
         }
 
         .plano-box {
             background: #fdfdfd;
-            padding: 5px;
+            padding: 10px;
             border-radius: 4px;
             border: 1px solid #f0f0f0;
+            width: 100%;
         }
 
         .plano-titulo {
@@ -398,7 +403,7 @@
             background: #f0f0f0;
             color: #333;
             text-decoration: none;
-            padding: 8px;
+            padding: 10px;
             margin-top: auto;
             font-size: 0.75rem;
             border-radius: 2px;
@@ -416,7 +421,7 @@
             background: var(--whatsapp-green);
             color: white;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px;
             margin-top: 10px;
             font-size: 0.8rem;
             font-weight: bold;
@@ -473,12 +478,11 @@
 
             #motos-titulo { order: 2; }
             .filter-container { order: 3; }
-            .motos-grid { order: 4; }
+            .motos-grid { order: 4; gap: 10px; padding: 0 10px; }
             
-            /* CORREÇÃO DO TEXTO SOBREPOSTO: Mudando para 1 coluna no mobile */
             .excelencia { 
                 order: 5; 
-                grid-template-columns: 1fr; 
+                flex-direction: column;
                 padding: 30px 8%; 
                 gap: 30px; 
             }
@@ -493,13 +497,13 @@
             .hero h2.main-cta { font-size: 1.4rem; }
             .hero h2.sub-quote { font-size: 1rem; }
             .profile-img { width: 120px; height: 120px; }
-            .motos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 10px; }
+            
+            .moto-card { width: 47%; min-height: auto; }
             .img-container { height: 130px; }
             .moto-info strong { font-size: 0.8rem; min-height: 2.4em; display: flex; align-items: center; justify-content: center; }
             .btn-planos { font-size: 0.65rem; padding: 8px 5px; }
             .btn-whatsapp { font-size: 0.75rem; padding: 10px 5px; }
             .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 15px; right: 15px; }
-            .planos-container { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
@@ -764,7 +768,7 @@
         </div>
     </div>
 
-    <div class="moto-card" data-category="biz">
+    <div class="moto-card" data-category="scooter">
         <div class="img-container">
             <span class="badge-destaque">Queridinha</span>
             <img src="BIZ125.jpeg" alt="BIZ 125 ES">
@@ -806,7 +810,7 @@
         </div>
     </div>
 
-    <div class="moto-card" data-category="biz">
+    <div class="moto-card" data-category="scooter">
         <div class="img-container"><img src="BIZ125EX.jpeg" alt="BIZ 125 EX"></div>
         <div class="moto-info">
             <strong>BIZ 125 EX</strong>
@@ -1269,6 +1273,8 @@
             detalhes.style.display = "block";
             btn.innerText = "Ocultar Detalhes";
         }
+        // Força o navegador a recalcular o layout para evitar sobreposição
+        window.dispatchEvent(new Event('resize'));
     }
 
     function filterMotos(category) {
@@ -1281,10 +1287,15 @@
         }
 
         cards.forEach(card => {
-            // Removida animação complexa que causava falhas no carregamento mobile
+            // Removido setTimeout complexo que causava falhas no Safari iPhone 8
             if (category === 'todos' || card.getAttribute('data-category') === category) {
                 card.style.display = 'flex';
-                card.style.opacity = '1';
+                // Truque para obrigar o Safari a redesenhar a imagem
+                const img = card.querySelector('img');
+                if (img) {
+                    img.style.display = 'none';
+                    setTimeout(() => { img.style.display = 'block'; }, 10);
+                }
             } else {
                 card.style.display = 'none';
             }
